@@ -30,8 +30,8 @@ import axios from 'axios';
       console.log(file)
       setFiles(file)
     }
-    
-    const handleClick = (e) => {
+    // CREATE
+    const createApi = (e) => {
       const formdata = new FormData();
       formdata.append('file', files[0]);
       formdata.append('name', name);
@@ -50,6 +50,32 @@ import axios from 'axios';
             setPhotos(response.data);
 	    console.log(photos);
             console.log("성공");
+        })
+        .catch(function(error) {
+            console.log("실패");
+        })
+    }
+    // UPDATE
+    const updateApi = (e) => {
+      const formdata = new FormData();
+      formdata.append('file', files[0]);
+      formdata.append('name', name);
+      formdata.append('weblink', link);
+      formdata.append('date', date);
+      formdata.append('count', count);
+      formdata.append('price', price);
+      formdata.append('high_price', high_price);
+      const config = {
+	Headers: {
+	  'content-type': 'multipart/form-data',
+	},
+      }
+      axios.put('/schedules/3', formdata, config)
+        .then(function(response) {
+            setPhotos(response.data);
+	    console.log(photos);
+            console.log("성공");
+	    window.location.replace("/update/3")
         })
         .catch(function(error) {
             console.log("실패");
@@ -86,51 +112,8 @@ import axios from 'axios';
             console.log("실패");
         })
     }
-    function updateApi() {
-        const url = "/schedules/3";
-        axios.put(url, {
-	  image: image,
-	  name: name,
-	  weblink: link,
-	  twitlink: '',
-	  discordlink: '',
-	  date: date,
-	  count: count,
-	  price: price,
-	  high_price: high_price
-	})
-        .then(function(response) {
-            setPhotos(response.data);
-	    console.log(photos);
-            console.log("성공");
-	    window.location.replace("/update")
-        })
-        .catch(function(error) {
-            console.log("실패");
-        })
-    }
-    function createApi() {
-        const url = "/schedules";
-        axios.post(url, {
-	  image: image,
-	  name: name,
-	  weblink: link,
-	  twitlink: '',
-	  discordlink: '',
-	  date: date,
-	  count: count,
-	  price: price,
-	  high_price: high_price
-	})
-        .then(function(response) {
-            setPhotos(response.data);
-	    console.log(photos);
-            console.log("성공");
-        })
-        .catch(function(error) {
-            console.log("실패");
-        })
-    }
+
+    // STYLE
     const tempStyle = {
       width: "80%",
       height: "70px",
@@ -198,7 +181,7 @@ import axios from 'axios';
 	/><br />
 	<button onClick={searchAllApi}>SEARCH</button>
 	<button onClick={updateApi}>UPDATE</button>
-	<button onClick={handleClick}>CREATE</button>
+	<button onClick={createApi}>CREATE</button>
 	<h3>HELLO</h3>
       </div>
     );
