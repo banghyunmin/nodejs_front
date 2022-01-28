@@ -1,0 +1,9 @@
+cors error 해결
+page 이동 구현
+update 페이지 구현
+axios 구현
+
+해야할거
+1. params 이용해서 원하는 id페이지로 이동구현
+2. 해당 페이지에 해당하는 schedule 수정
+3. create schedule 후 해당 schedule 디스플레이

@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React from 'react';
 
 import Header from '../component/Header.js';
 import Table from '@mui/material/Table';
@@ -14,23 +13,11 @@ import Box from '@mui/material/Box';
 import Footer from '../component/Footer.js';
 
 export default function Home() {
-    const [tableData, setTableData] = useState('');
-    useEffect(() => {
-        axios.get(`/schedules`).then((response) => {
-        console.log(response.data);    
-        setTableData(response.data);
-        });
-    }, []);
-
-    const tempStyle = {
-      width: "100px"
-    }
-    
     return (
         <>
             <div className="AppBar">
-	    	    <h1><a href="/create"> CREATE </a></h1>
-	    </div>
+                <Header/>
+            </div>
             <div className="content">
                 <Box 
                     sx={{ 
@@ -59,28 +46,6 @@ export default function Home() {
                                             <TableCell align="center"><b>시장가격</b></TableCell>
                                         </TableRow>
                                     </TableHead>
-                                    <TableBody>
-                                    { tableData ? tableData.map((row) => (
-                                        <TableRow key={row.id}>
-                                            <TableCell component="th" scope="row">
-					        {row.id}
-					    </TableCell>
-                                            <TableCell align="right"><img style={tempStyle} src={row.image} /></TableCell>
-                                            <TableCell align="right">
-					    <a href="/update">
-                                                <div>{row.name}</div>
-					    </a>
-                                            </TableCell>
-                                            <TableCell align="right">
-                                                {row.weblink}
-                                            </TableCell>
-                                            <TableCell align="right">{row.date}</TableCell>
-                                            <TableCell align="right">{row.count}</TableCell>
-                                            <TableCell align="right">{row.price}</TableCell>
-                                            <TableCell align="right">{row.high_price}</TableCell>
-                                        </TableRow>
-                                    )) : '' }
-                                    </TableBody>
                                 </Table>
                             </TableContainer>
                         </Grid>

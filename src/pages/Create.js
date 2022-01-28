@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import Update_inputs from './Update_inputs.js';
 
 import Header from '../component/Header.js';
 import Table from '@mui/material/Table';
@@ -15,22 +15,12 @@ import Footer from '../component/Footer.js';
 
 export default function Home() {
     const [tableData, setTableData] = useState('');
-    useEffect(() => {
-        axios.get(`/schedules`).then((response) => {
-        console.log(response.data);    
-        setTableData(response.data);
-        });
-    }, []);
 
-    const tempStyle = {
-      width: "100px"
-    }
-    
     return (
         <>
             <div className="AppBar">
-	    	    <h1><a href="/create"> CREATE </a></h1>
-	    </div>
+                <Header/>
+            </div>
             <div className="content">
                 <Box 
                     sx={{ 
@@ -60,26 +50,25 @@ export default function Home() {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                    { tableData ? tableData.map((row) => (
-                                        <TableRow key={row.id}>
+                                    { tableData ? (
+                                        <TableRow key={tableData.id}>
                                             <TableCell component="th" scope="row">
-					        {row.id}
+					        {tableData.id}
 					    </TableCell>
-                                            <TableCell align="right"><img style={tempStyle} src={row.image} /></TableCell>
                                             <TableCell align="right">
 					    <a href="/update">
-                                                <div>{row.name}</div>
+                                                <div>{tableData.name}</div>
 					    </a>
                                             </TableCell>
                                             <TableCell align="right">
-                                                {row.weblink}
+                                                {tableData.weblink}
                                             </TableCell>
-                                            <TableCell align="right">{row.date}</TableCell>
-                                            <TableCell align="right">{row.count}</TableCell>
-                                            <TableCell align="right">{row.price}</TableCell>
-                                            <TableCell align="right">{row.high_price}</TableCell>
+                                            <TableCell align="right">{tableData.date}</TableCell>
+                                            <TableCell align="right">{tableData.count}</TableCell>
+                                            <TableCell align="right">{tableData.price}</TableCell>
+                                            <TableCell align="right">{tableData.high_price}</TableCell>
                                         </TableRow>
-                                    )) : '' }
+                                    ) : '' }
                                     </TableBody>
                                 </Table>
                             </TableContainer>
@@ -88,7 +77,7 @@ export default function Home() {
                 </Box>
             </div>
             <div className="Footer">
-                <Footer/>
+	    	<Update_inputs />
             </div>
         </>
     )

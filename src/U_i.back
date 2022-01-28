@@ -1,0 +1,90 @@
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+
+  function InputComp(match) {
+// REST API SETTING
+    const [tableData, setTableData] = useState('');
+    useEffect(() => {
+        axios.post(`/schedules/3`).then((response) => {
+        console.log(response.data);    
+        setTableData(response.data);
+        });
+    }, []);
+
+// INPUT SETTING
+    const [inputs, setInputs] = useState({
+	    image: '',
+	    name: '',
+	    link: '',
+	    date: '',
+	    count: '',
+	    price: '',
+	    high_price: ''
+    });
+    const {image, name, link, date, count, price, high_price} = inputs;
+
+    const onUpdate = () => {
+      
+    }
+
+    const onDataChange = (e) => {
+      const {value, name} = e.target
+      setInputs({
+	...inputs,
+	[name]: value
+      })
+      console.log(value)
+    }
+
+// PARAMS SETTING
+
+    return (
+      <div>
+	name<input
+	    type="text"
+	    placehoder="name"
+	    name="name"
+	    value={name}
+	    onChange={onDataChange}
+	/><br />
+	link<input
+	    type="text"
+	    placehoder="link"
+	    name="link"
+	    value={link}
+	    onChange={onDataChange}
+	/><br />
+	date<input
+	    type="text"
+	    placehoder="date"
+	    name="date"
+	    value={date}
+	    onChange={onDataChange}
+	/><br />
+	count<input
+	    type="text"
+	    placehoder="count"
+	    name="count"
+	    value={count}
+	    onChange={onDataChange}
+	/><br />
+	price<input
+	    type="text"
+	    placehoder="price"
+	    name="price"
+	    value={price}
+	    onChange={onDataChange}
+	/><br />
+	high_price<input
+	    type="text"
+	    placehoder="high_price"
+	    name="high_price"
+	    value={high_price}
+	    onChange={onDataChange}
+	/><br />
+	<h3>HELLO</h3>
+      </div>
+    );
+  }
+
+export default InputComp;
