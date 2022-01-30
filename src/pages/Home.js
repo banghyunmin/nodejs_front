@@ -52,7 +52,9 @@ export default function Home() {
                                             <TableCell align="center"><b>ID</b></TableCell>
                                             <TableCell align="center"><b>사진</b></TableCell>
                                             <TableCell align="center"><b>프로젝트</b></TableCell>
-                                            <TableCell align="center"><b>링크</b></TableCell>
+                                            <TableCell align="center"><b>WEB</b></TableCell>
+                                            <TableCell align="center"><b>TWITTER</b></TableCell>
+                                            <TableCell align="center"><b>DISCORD</b></TableCell>
                                             <TableCell align="center"><b>날짜</b></TableCell>
                                             <TableCell align="center"><b>수량</b></TableCell>
                                             <TableCell align="center"><b>민팅가격</b></TableCell>
@@ -72,9 +74,9 @@ export default function Home() {
                                                 <div>{row.name}</div>
 					    </a>
                                             </TableCell>
-                                            <TableCell align="right">
-                                                {row.weblink}
-                                            </TableCell>
+                                            <TableCell align="right"><a href={row.weblink}>WEB</a></TableCell>
+                                            <TableCell align="right"><a href={row.twitlink}>TWITTER</a></TableCell>
+                                            <TableCell align="right"><a href={row.discordlink}>DISCORD</a></TableCell>
                                             <TableCell align="right">{row.date}</TableCell>
                                             <TableCell align="right">{row.count}</TableCell>
                                             <TableCell align="right">{row.price}</TableCell>

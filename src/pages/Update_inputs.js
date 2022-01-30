@@ -6,13 +6,15 @@ import axios from 'axios';
     const [inputs, setInputs] = useState({
 	    image: '',
 	    name: '',
-	    link: '',
+	    weblink: '',
+	    twitlink: '',
+	    discordlink: '',
 	    date: '',
 	    count: '',
 	    price: '',
 	    high_price: ''
     });
-    const {image, name, link, date, count, price, high_price} = inputs;
+    const {image, name, weblink, twitlink, discordlink,  date, count, price, high_price} = inputs;
 
     const onDataChange = (e) => {
       const {value, name} = e.target
@@ -35,7 +37,9 @@ import axios from 'axios';
       const formdata = new FormData();
       formdata.append('file', files[0]);
       formdata.append('name', name);
-      formdata.append('weblink', link);
+      formdata.append('weblink', weblink);
+      formdata.append('twitlink', twitlink);
+      formdata.append('discordlink', discordlink);
       formdata.append('date', date);
       formdata.append('count', count);
       formdata.append('price', price);
@@ -61,7 +65,9 @@ import axios from 'axios';
       const formdata = new FormData();
       formdata.append('file', files[0]);
       formdata.append('name', name);
-      formdata.append('weblink', link);
+      formdata.append('weblink', weblink);
+      formdata.append('twitlink', twitlink);
+      formdata.append('discordlink', discordlink);
       formdata.append('date', date);
       formdata.append('count', count);
       formdata.append('price', price);
@@ -107,7 +113,9 @@ import axios from 'axios';
 	  setInputs({
 		image: response.data.image,
 		name: response.data.name,
-		link: response.data.weblink,
+		weblink: response.data.weblink,
+		twitlink: response.data.twitlink,
+		discordlink: response.data.discordlink,
 		date: response.data.date,
 		count: response.data.count,
 		price: response.data.price,
@@ -157,12 +165,28 @@ import axios from 'axios';
 	    value={name}
 	    onChange={onDataChange}
 	/><br />
-	link<input
+	webPage<input
 	    style={tempStyle}
 	    type="text"
-	    placehoder="link"
-	    name="link"
-	    value={link}
+	    placehoder="weblink"
+	    name="weblink"
+	    value={weblink}
+	    onChange={onDataChange}
+	/><br />
+	twitter<input
+	    style={tempStyle}
+	    type="text"
+	    placehoder="twitlink"
+	    name="twitlink"
+	    value={twitlink}
+	    onChange={onDataChange}
+	/><br />
+	discord<input
+	    style={tempStyle}
+	    type="text"
+	    placehoder="discordlink"
+	    name="discordlink"
+	    value={discordlink}
 	    onChange={onDataChange}
 	/><br />
 	date<input
