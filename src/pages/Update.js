@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import Update_inputs from './Update_inputs.js';
 
@@ -16,17 +17,21 @@ import Footer from '../component/Footer.js';
 
 export default function Home() {
     const [tableData, setTableData] = useState('');
+    const params = useParams();
     useEffect(() => {
-        axios.get(`/schedules/3`).then((response) => {
-        console.log(response.data);    
+        axios.get(`/schedules/`+params.id).then((response) => {
         setTableData(response.data);
         });
     }, []);
 
+    const tempStyle = {
+      width: "100px"
+    }
+
     return (
         <>
             <div className="AppBar">
-                <Header/>
+	    	<Header />
             </div>
             <div className="content">
                 <Box 
@@ -46,10 +51,11 @@ export default function Home() {
                                 <Table stickyHeader sx={{ minWidth: 800 }}>
                                     <TableHead>
                                         <TableRow>
+                                            <TableCell align="center"><b>ID</b></TableCell>
+                                            <TableCell align="center"><b>사진</b></TableCell>
                                             <TableCell align="center"><b>프로젝트</b></TableCell>
                                             <TableCell align="center"><b>링크</b></TableCell>
                                             <TableCell align="center"><b>날짜</b></TableCell>
-                                            <TableCell align="center"><b>시간</b></TableCell>
                                             <TableCell align="center"><b>수량</b></TableCell>
                                             <TableCell align="center"><b>민팅가격</b></TableCell>
                                             {/* tooltip 추가하기 */}
@@ -62,6 +68,7 @@ export default function Home() {
                                             <TableCell component="th" scope="row">
 					        {tableData.id}
 					    </TableCell>
+                                            <TableCell align="right"><img style={tempStyle} src={tableData.image} /></TableCell>
                                             <TableCell align="right">
 					    <a href="/update">
                                                 <div>{tableData.name}</div>
@@ -84,7 +91,7 @@ export default function Home() {
                 </Box>
             </div>
             <div className="Footer">
-	    	<Update_inputs />
+	    	<Update_inputs param={params.id} />
             </div>
         </>
     )

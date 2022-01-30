@@ -49,10 +49,11 @@ export default function Home() {
                                 <Table stickyHeader sx={{ minWidth: 800 }}>
                                     <TableHead>
                                         <TableRow>
+                                            <TableCell align="center"><b>ID</b></TableCell>
+                                            <TableCell align="center"><b>사진</b></TableCell>
                                             <TableCell align="center"><b>프로젝트</b></TableCell>
                                             <TableCell align="center"><b>링크</b></TableCell>
                                             <TableCell align="center"><b>날짜</b></TableCell>
-                                            <TableCell align="center"><b>시간</b></TableCell>
                                             <TableCell align="center"><b>수량</b></TableCell>
                                             <TableCell align="center"><b>민팅가격</b></TableCell>
                                             {/* tooltip 추가하기 */}
@@ -67,7 +68,7 @@ export default function Home() {
 					    </TableCell>
                                             <TableCell align="right"><img style={tempStyle} src={row.image} /></TableCell>
                                             <TableCell align="right">
-					    <a href="/update">
+					    <a href={"/update/"+row.id}>
                                                 <div>{row.name}</div>
 					    </a>
                                             </TableCell>

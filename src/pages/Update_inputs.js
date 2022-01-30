@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-  function InputComp() {
+  function InputComp(props) {
 // INPUT SETTING
     const [inputs, setInputs] = useState({
 	    image: '',
@@ -50,6 +50,7 @@ import axios from 'axios';
             setPhotos(response.data);
 	    console.log(photos);
             console.log("성공");
+	    window.location.replace("/")
         })
         .catch(function(error) {
             console.log("실패");
@@ -70,12 +71,30 @@ import axios from 'axios';
 	  'content-type': 'multipart/form-data',
 	},
       }
-      axios.put('/schedules/3', formdata, config)
+      axios.put('/schedules/'+props.param, formdata, config)
         .then(function(response) {
             setPhotos(response.data);
 	    console.log(photos);
             console.log("성공");
-	    window.location.replace("/update/3")
+	    window.location.replace("/update/"+props.param)
+        })
+        .catch(function(error) {
+            console.log("실패");
+        })
+    }
+    // DELETE
+    const deleteApi = (e) => {
+      const config = {
+	Headers: {
+	  'content-type': 'multipart/form-data',
+	},
+      }
+      axios.delete('/schedules/'+props.param)
+        .then(function(response) {
+            setPhotos(response.data);
+	    console.log(photos);
+            console.log("성공");
+	    window.location.replace("/")
         })
         .catch(function(error) {
             console.log("실패");
@@ -84,8 +103,7 @@ import axios from 'axios';
 
 // useEffect
     useEffect(() => {
-        axios.get(`/schedules/3`).then((response) => {
-          console.log(response.data);    
+        axios.get(`/schedules/`+props.param).then((response) => {
 	  setInputs({
 		image: response.data.image,
 		name: response.data.name,
@@ -101,7 +119,7 @@ import axios from 'axios';
 // Rest API
     const [photos, setPhotos] = useState('');
     function searchAllApi() {
-        const url = "/schedules/3";
+        const url = "/schedules/"+props.param;
         axios.get(url)
         .then(function(response) {
             setPhotos(response.data);
@@ -182,6 +200,7 @@ import axios from 'axios';
 	<button onClick={searchAllApi}>SEARCH</button>
 	<button onClick={updateApi}>UPDATE</button>
 	<button onClick={createApi}>CREATE</button>
+	<button onClick={deleteApi}>DELETE</button>
 	<h3>HELLO</h3>
       </div>
     );
