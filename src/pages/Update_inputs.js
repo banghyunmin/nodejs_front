@@ -1,8 +1,14 @@
 import React, {useState, useEffect} from 'react';
+import {useLocation} from 'react-router-dom';
 import axios from 'axios';
+import qs from 'qs';
 
   function InputComp(props) {
 // INPUT SETTING
+    const location = useLocation();
+    const query = qs.parse(location.search, {
+      ignoreQueryPrefix: true
+    });
     const [inputs, setInputs] = useState({
 	    image: '',
 	    name: '',
@@ -82,7 +88,7 @@ import axios from 'axios';
             setPhotos(response.data);
 	    console.log(photos);
             console.log("성공");
-	    window.location.replace("/update/"+props.param)
+	    window.location.replace("/")
         })
         .catch(function(error) {
             console.log("실패");
@@ -150,13 +156,7 @@ import axios from 'axios';
 
     return (
       <div>
-	image<input
-	    style={tempStyle}
-	    type="file"
-	    name="image"
-	    accept="image/png, image/jpeg"
-	    onChange={onLoadFile}
-	/><br />
+	{query.visible == "text" ? null : 'image<input style={tempStyle} type="file" name="image" accept="image/png, image/jpeg" onChange='+{onLoadFile}+' /><br />' }
 	name<input
 	    style={tempStyle}
 	    type="text"
@@ -191,7 +191,7 @@ import axios from 'axios';
 	/><br />
 	date<input
 	    style={tempStyle}
-	    type="text"
+	    type="date"
 	    placehoder="date"
 	    name="date"
 	    value={date}

@@ -70,7 +70,9 @@ export default function Home() {
                                             <TableCell component="th" scope="row">
 					        {tableData.id}
 					    </TableCell>
-                                            <TableCell align="right"><img style={tempStyle} src={tableData.image} /></TableCell>
+                                            <TableCell align="right">
+					    <img style={tempStyle} src={tableData.image} />
+					    </TableCell>
                                             <TableCell align="right">
 					    <a href="/update">
                                                 <div>{tableData.name}</div>
