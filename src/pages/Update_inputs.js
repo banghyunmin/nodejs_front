@@ -156,7 +156,15 @@ import qs from 'qs';
 
     return (
       <div>
-	{query.visible == "text" ? null : 'image<input style={tempStyle} type="file" name="image" accept="image/png, image/jpeg" onChange='+{onLoadFile}+' /><br />' }
+	{
+	query.visible == "text" ?
+		null :
+		(
+		<div>
+		image<input style={tempStyle} type="file" name="image" accept="image/png, image/jpeg" onChange={onLoadFile} /> <br />
+		</div>
+		)
+	}
 	name<input
 	    style={tempStyle}
 	    type="text"
