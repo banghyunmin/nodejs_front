@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 import axios from 'axios';
+import Update_inputs from './project_input.js';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,9 +15,9 @@ import Box from '@mui/material/Box';
 
 export default function Home() {
     const [tableData, setTableData] = useState('');
+    const params = useParams();
     useEffect(() => {
-        axios.get(`/schedules`).then((response) => {
-        console.log(response.data);    
+        axios.get(`/schedules/`+params.id).then((response) => {
         setTableData(response.data);
         });
     }, []);
@@ -23,12 +25,11 @@ export default function Home() {
     const tempStyle = {
       width: "100px"
     }
-    
+
     return (
         <>
             <div className="AppBar">
-	    	    <h1><a href="/create"> CREATE </a></h1>
-	    </div>
+            </div>
             <div className="content">
                 <Box 
                     sx={{ 
@@ -48,49 +49,39 @@ export default function Home() {
                                     <TableHead>
                                         <TableRow>
                                             <TableCell align="center"><b>ID</b></TableCell>
-                                            <TableCell align="center"><b>사진</b></TableCell>
                                             <TableCell align="center"><b>프로젝트</b></TableCell>
                                             <TableCell align="center"><b>WEB</b></TableCell>
                                             <TableCell align="center"><b>TWITTER</b></TableCell>
                                             <TableCell align="center"><b>DISCORD</b></TableCell>
-                                            <TableCell align="center"><b>날짜</b></TableCell>
-                                            <TableCell align="center"><b>수량</b></TableCell>
                                             <TableCell align="center"><b>민팅가격</b></TableCell>
-                                            {/* tooltip 추가하기 */}
                                             <TableCell align="center"><b>시장가격</b></TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                    { tableData ? tableData.map((row) => (
-                                        <TableRow key={row.id}>
+                                    { tableData ? (
+                                        <TableRow key={tableData.id}>
                                             <TableCell component="th" scope="row">
-					        {row.id}
+					        {tableData.id}
 					    </TableCell>
                                             <TableCell align="right">
-					    <a href={"/test/update/"+row.id}>
-					    <img style={tempStyle} src={row.image} />
-					    </a>
-					    </TableCell>
-                                            <TableCell align="right">
-					    <a href={"/test/update/"+row.id+"?visible=text"}>
-                                                <div>{row.name}</div>
-					    </a>
+                                                <div>{tableData.name}</div>
                                             </TableCell>
-                                            <TableCell align="right"><a href={row.weblink}>WEB</a></TableCell>
-                                            <TableCell align="right"><a href={row.twitlink}>TWITTER</a></TableCell>
-                                            <TableCell align="right"><a href={row.discordlink}>DISCORD</a></TableCell>
-                                            <TableCell align="right">{row.date}</TableCell>
-                                            <TableCell align="right">{row.count}</TableCell>
-                                            <TableCell align="right">{row.price}</TableCell>
-                                            <TableCell align="right">{row.high_price}</TableCell>
+                                            <TableCell align="right"><a href={tableData.weblink}>WEB</a></TableCell>
+                                            <TableCell align="right"><a href={tableData.twitlink}>TWITTER</a></TableCell>
+                                            <TableCell align="right"><a href={tableData.discordlink}>DISCORD</a></TableCell>
+                                            <TableCell align="right">{tableData.price}</TableCell>
+                                            <TableCell align="right">{tableData.high_price}</TableCell>
                                         </TableRow>
-                                    )) : '' }
+                                    ) : '' }
                                     </TableBody>
                                 </Table>
                             </TableContainer>
                         </Grid>
                     </Grid>
                 </Box>
+            </div>
+            <div className="Footer">
+	    	<Update_inputs param={params.id} />
             </div>
         </>
     )
