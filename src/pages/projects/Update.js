@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
-import Update_inputs from './project_input.js';
+import Update_inputs from './Update_inputs.js';
 
+import Header from '../component/Header.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,6 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Footer from '../component/Footer.js';
 
 export default function Home() {
     const [tableData, setTableData] = useState('');
@@ -29,6 +31,7 @@ export default function Home() {
     return (
         <>
             <div className="AppBar">
+	    	<Header />
             </div>
             <div className="content">
                 <Box 
@@ -49,11 +52,15 @@ export default function Home() {
                                     <TableHead>
                                         <TableRow>
                                             <TableCell align="center"><b>ID</b></TableCell>
+                                            <TableCell align="center"><b>사진</b></TableCell>
                                             <TableCell align="center"><b>프로젝트</b></TableCell>
                                             <TableCell align="center"><b>WEB</b></TableCell>
                                             <TableCell align="center"><b>TWITTER</b></TableCell>
                                             <TableCell align="center"><b>DISCORD</b></TableCell>
+                                            <TableCell align="center"><b>날짜</b></TableCell>
+                                            <TableCell align="center"><b>수량</b></TableCell>
                                             <TableCell align="center"><b>민팅가격</b></TableCell>
+                                            {/* tooltip 추가하기 */}
                                             <TableCell align="center"><b>시장가격</b></TableCell>
                                         </TableRow>
                                     </TableHead>
@@ -64,11 +71,18 @@ export default function Home() {
 					        {tableData.id}
 					    </TableCell>
                                             <TableCell align="right">
+					    <img style={tempStyle} src={tableData.image} />
+					    </TableCell>
+                                            <TableCell align="right">
+					    <a href="/update">
                                                 <div>{tableData.name}</div>
+					    </a>
                                             </TableCell>
                                             <TableCell align="right"><a href={tableData.weblink}>WEB</a></TableCell>
                                             <TableCell align="right"><a href={tableData.twitlink}>TWITTER</a></TableCell>
                                             <TableCell align="right"><a href={tableData.discordlink}>DISCORD</a></TableCell>
+                                            <TableCell align="right">{tableData.date}</TableCell>
+                                            <TableCell align="right">{tableData.count}</TableCell>
                                             <TableCell align="right">{tableData.price}</TableCell>
                                             <TableCell align="right">{tableData.high_price}</TableCell>
                                         </TableRow>

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 import axios from 'axios';
 
 import Header from '../component/Header.js';
@@ -6,8 +7,9 @@ import Footer from '../component/Footer.js';
 
 export default function Home() {
     const [tableData, setTableData] = useState('');
+    const params = useParams();
     useEffect(() => {
-        axios.get(`/schedules/getall`).then((response) => {
+        axios.get("/schedules/"+params.id).then((response) => {
         console.log(response.data);    
         setTableData(response.data);
         });
@@ -21,20 +23,13 @@ export default function Home() {
     return (
 <>
 <div className="AppBar">
-  <Header />
-  <div style={{height:"100px"}}></div>
-  <h1><a href="/createprojects"> 프로젝트 추가하기  </a></h1>
+  <h1><a href={"/projects/"+params.id+"/create"}> 스케쥴 추가하기 </a></h1>
 </div>
 <div className="content">
-  <ul>
-  {tableData ? tableData.map((row) => (
-    <li>
-      {row.id}
-      <a href={"/images/"+row.id}><img style={tempStyle} src={row.image} /></a>
-      <a style={tempStyle} href={"/projects/"+row.id}>{row.name}</a>
-    </li>
+  <ol>
+  {tableData ? tableData[0].schedule.map((row) => (
   )) : '' }
-  </ul>
+  </ol>
 </div>
 <div className="Footer">
   <Footer/>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Update_inputs from './project_input.js';
+import Update_inputs from './Update_inputs.js';
 
+import Header from '../component/Header.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,6 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Footer from '../component/Footer.js';
 
 export default function Home() {
     const [tableData, setTableData] = useState('');
@@ -17,6 +19,7 @@ export default function Home() {
     return (
         <>
             <div className="AppBar">
+                <Header/>
             </div>
             <div className="content">
                 <Box 

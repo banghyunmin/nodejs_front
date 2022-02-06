@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Update_inputs from './Update_inputs.js';
+import CreateInputs from './Update_inputs.js';
 
 import Header from '../component/Header.js';
 import Table from '@mui/material/Table';
@@ -77,7 +77,7 @@ export default function Home() {
                 </Box>
             </div>
             <div className="Footer">
-	    	<Update_inputs />
+	    	<CreateInputs />
             </div>
         </>
     )

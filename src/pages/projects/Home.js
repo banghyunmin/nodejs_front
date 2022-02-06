@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
+import Header from '../component/Header.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,6 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Footer from '../component/Footer.js';
 
 export default function Home() {
     const [tableData, setTableData] = useState('');
@@ -67,12 +69,12 @@ export default function Home() {
 					        {row.id}
 					    </TableCell>
                                             <TableCell align="right">
-					    <a href={"/test/update/"+row.id}>
+					    <a href={"/update/"+row.id}>
 					    <img style={tempStyle} src={row.image} />
 					    </a>
 					    </TableCell>
                                             <TableCell align="right">
-					    <a href={"/test/update/"+row.id+"?visible=text"}>
+					    <a href={"/update/"+row.id+"?visible=text"}>
                                                 <div>{row.name}</div>
 					    </a>
                                             </TableCell>
@@ -91,6 +93,9 @@ export default function Home() {
                         </Grid>
                     </Grid>
                 </Box>
+            </div>
+            <div className="Footer">
+                <Footer/>
             </div>
         </>
     )
