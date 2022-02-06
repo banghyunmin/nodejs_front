@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -19,26 +20,26 @@ export default function Header() {
                     <Toolbar disableGutters>
                         <Grid xs={4}>
                             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex', justifyContent: 'start' } }}>
-                                <a href="/">
+                                <Link to="/">
                                     <img
                                         alt="hanguelLogo"
                                         src={hanguelLogo}
                                         style={{ width:210, height:120, margin:'auto' }}
                                         
                                     />
-                                </a>
+                                </Link>
                             </Box>
                         </Grid>
                         <Grid xs={4}>
                             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex', justifyContent: 'center' } }}>
-                                <a href="/">
+                                <Link to="/">
                                     <img
                                         alt="logo"
                                         src={logo}
                                         style={{ width:210, height:140, margin:'auto' }}
                                         
                                     />
-                                </a>
+                                </Link>
                             </Box>
                         </Grid>
                         <Grid xs={4}>

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 import Header from '../component/Header.js';
@@ -30,8 +31,8 @@ export default function Home() {
   {tableData ? tableData.map((row) => (
     <li>
       {row.id}
-      <a href={"/images/"+row.id}><img style={tempStyle} src={row.image} /></a>
-      <a style={tempStyle} href={"/projects/"+row.id}>{row.name}</a>
+      <img style={tempStyle} src={row.image[0]} />
+      <Link style={tempStyle} to={"/projects/"+row.id}>{row.name}</Link>
     </li>
   )) : '' }
   </ul>

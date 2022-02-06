@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {useParams} from 'react-router-dom';
-import Update_inputs from './Update_inputs.js';
 import axios from 'axios';
 
 import Header from '../component/Header.js';

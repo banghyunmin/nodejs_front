@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Update_inputs from './Update_inputs.js';
 
 import Header from '../component/Header.js';
 import Footer from '../component/Footer.js';
@@ -56,6 +55,7 @@ export default function ProjectCreate() {
             <div className="AppBar">
   		<Header />
   		<div style={{height:"100px"}}></div>
+  <h2>프로젝트 추가 페이지</h2>
             </div>
             <div className="content">
             </div>
@@ -110,7 +110,7 @@ export default function ProjectCreate() {
 	    value={high_price}
 	    onChange={onDataChange}
 	/><br />
-	<button onClick={createApi}>CREATE</button>
+	<button onClick={createApi} style={{margin:"50px", width:"100px", height:"50px"}}>CREATE</button>
       </div>
             </div>
         </>
