@@ -9,6 +9,7 @@ export default function Home() {
     const [tableData, setTableData] = useState('');
     const [imageData, setImageData] = useState([]);
     const [scheduleData, setScheduleData] = useState([]);
+    const [bestData, setBestData] = useState([]);
     const params = useParams();
     useEffect(() => {
         axios.get("/schedules/"+params.id)
@@ -30,6 +31,14 @@ export default function Home() {
 	    }).catch((err) => {
 	      console.log("get schedules err : ", err)
 	    })
+        }).then(() => {
+          axios.get("/schedules/0/bests/"+params.id)
+	    .then((resBests) => {
+              console.log("bests : ", resBests);    
+	      setBestData(resBests.data)
+	    }).catch((err) => {
+	      console.log("get bests err : ", err)
+	    })
 	}).catch(err => {
 		console.log("GET ERROR: ", err)
 	});
@@ -40,6 +49,31 @@ export default function Home() {
       fontSize: "30px"
     }
 
+    // 등록하기 
+    const postApi = (e) => {
+      axios.post('/schedules/'+params.id+'/bests/', {
+	      proj_id: params.id
+      }).then(function(response) {
+            console.log("성공");
+	    window.location.replace("/projects/"+params.id)
+        })
+        .catch(function(error) {
+            console.log("실패 : ", error);
+        })
+    }
+    // 취소하기
+    const deleteApi = (e) => {
+      axios.delete('/schedules/'+params.id+'/bests/', {
+	      proj_id: params.id
+      }).then(function(response) {
+            console.log("성공");
+	    window.location.replace("/projects/"+params.id)
+        })
+        .catch(function(error) {
+            console.log("실패 : ", error);
+        })
+    }
+
     return (
 <>
 <div className="AppBar">
@@ -47,6 +81,15 @@ export default function Home() {
   <div style={{height:"100px"}}></div>
 </div>
 <div className="content">
+  {bestData ? (
+    <div style={{color:"red"}}>인기 프로젝트로 등록되어있습니다.
+<button onClick={deleteApi} style={{margin:"50px", width:"100px", height:"50px"}}>취소하기</button>
+    </div>
+  ) : (
+    <div style={{}}>인기 프로젝트가 아닙니다.
+<button onClick={postApi} style={{margin:"50px", width:"100px", height:"50px"}}>등록하기</button>
+    </div>
+  )}
   <h2> 프로젝트 (<Link to={"/updateprojects/"+params.id}>수정하기 </Link>
 	  / <Link to={"/deleteprojects/"+params.id}>삭제하기</Link>)</h2>
   <li>[이름 : {tableData.name}]</li>
