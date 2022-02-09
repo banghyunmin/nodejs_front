@@ -96,8 +96,7 @@ export default function Home() {
   <li>[웹 링크 : {tableData.weblink}]</li>
   <li>[트위터 : {tableData.twitlink}]</li>
   <li>[디스코드 : {tableData.discordlink}]</li>
-  <li>[민팅 가격 : {tableData.price}] [시장 최고가 : {tableData.high_price}]</li>
-  <li>[대표 날짜 : {tableData.date}] [총 수량 : {tableData.count}]</li>
+  <li>[시장 최고가 : {tableData.high_price}]</li>
 
 
 
@@ -122,12 +121,15 @@ export default function Home() {
 
 	    <hr />
   <h2> 스케쥴 (<Link to={"/projects/"+params.id+"/createschedule"}>추가하기</Link>) </h2>
+  <li>[대표 가격 : {tableData.price}] [대표 날짜 : {tableData.date}] [총 수량 : {tableData.count}]</li>
   <ol>
   {scheduleData ? scheduleData.map((row) => (
     <li>[민팅 유형 : {row.category}]<br />
-	  [날짜 : {row.date}]<br />
-	  [시간 : {row.time}]<br />
-	  [수량 : {row.count}]<br />
+	  [민팅 날짜 : {row.date}]<br />
+	  [민팅 시간 : {row.time}]<br />
+	  [민팅 가격 : {row.price}]<br />
+	  [민팅 수량 : {row.count}]<br />
+	  [ㅁ비 고ㅁ : {row.etc}]<br />
 	  (<Link to={"/projects/"+params.id+"/updateschedule/"+row.id}>수정하기</Link>)</li>
   )) : '' }
   </ol>

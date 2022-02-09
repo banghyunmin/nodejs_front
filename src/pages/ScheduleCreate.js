@@ -13,8 +13,10 @@ export default function Func() {
 	    date: '',
 	    time: '',
 	    count: '',
+	    price: '',
+	    etc: ''
     });
-    const {category, date, time, count} = inputs;
+    const {category, date, time, count, price, etc} = inputs;
 
     const onDataChange = (e) => {
       const {value, name} = e.target
@@ -30,6 +32,8 @@ export default function Func() {
 	      date: date,
 	      time: time,
 	      count: count,
+	      price: price,
+	      etc: etc
       }).then(function(response) {
             console.log("성공");
 	    window.location.replace("/projects/"+params.id)
@@ -53,7 +57,7 @@ export default function Func() {
   <h2>스케쥴 추가 페이지</h2>
 </div>
 <div className="content">
-	category<input
+	민팅 유형<input
 	    style={tempStyle}
 	    type="text"
 	    placehoder="category"
@@ -61,7 +65,7 @@ export default function Func() {
 	    value={category}
 	    onChange={onDataChange}
 	/><br />
-	date<input
+	민팅 날짜<input
 	    style={tempStyle}
 	    type="date"
 	    placehoder="date"
@@ -69,7 +73,7 @@ export default function Func() {
 	    value={date}
 	    onChange={onDataChange}
 	/><br />
-	time<input
+	민팅 시간<input
 	    style={tempStyle}
 	    type="time"
 	    placehoder="time"
@@ -77,12 +81,28 @@ export default function Func() {
 	    value={time}
 	    onChange={onDataChange}
 	/><br />
-	count<input
+	민팅 가격<input
+	    style={tempStyle}
+	    type="text"
+	    placehoder="price"
+	    name="price"
+	    value={price}
+	    onChange={onDataChange}
+	/><br />
+	민팅 수량<input
 	    style={tempStyle}
 	    type="text"
 	    placehoder="count"
 	    name="count"
 	    value={count}
+	    onChange={onDataChange}
+	/><br />
+	ㅁ비 고ㅁ<input
+	    style={tempStyle}
+	    type="text"
+	    placehoder="etc"
+	    name="etc"
+	    value={etc}
 	    onChange={onDataChange}
 	/><br />
 	<button onClick={createApi} style={{margin:"50px", width:"100px", height:"50px"}}>CREATE</button>
