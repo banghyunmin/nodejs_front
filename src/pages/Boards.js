@@ -8,7 +8,7 @@ import Footer from '../component/Footer.js';
 export default function Home() {
     const [tableData, setTableData] = useState('');
     useEffect(() => {
-        axios.get(`/schedules/getall`).then((response) => {
+        axios.get('/boards/').then((response) => {
         console.log(response.data);    
         setTableData(response.data);
         });
@@ -25,15 +25,15 @@ export default function Home() {
   <Header />
   <div style={{height:"100px"}}></div>
   <h1><Link to="/createprojects"> 프로젝트 추가하기  </Link></h1>
-  <h1><Link to="/boards/"> 게시판 </Link></h1>
+  <h1><Link to="/createboard/"> 게시글 작성 </Link></h1>
 </div>
 <div className="content">
   <ul>
   {tableData ? tableData.map((row) => (
     <li>
-      {row.id}
-      <img style={tempStyle} src={row.image[0]} />
-      <Link style={tempStyle} to={"/projects/"+row.id}>{row.name}</Link>
+      {row.id} | <Link to={"/boards/"+row.id}>
+	  {row.title}
+	  </Link> | {row.hit} | {row.createdAt.slice(0, 10)}
     </li>
   )) : '' }
   </ul>

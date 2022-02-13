@@ -12,10 +12,17 @@ import ImageUpdate from './pages/ImageUpdate.js';
 
 import ScheduleCreate from './pages/ScheduleCreate.js';
 import ScheduleUpdate from './pages/ScheduleUpdate.js';
+
+import Test from './pages/Test.js';
+import Boards from './pages/Boards.js';
+import Board from './pages/Board.js';
+import BoardCreate from './pages/BoardCreate.js';
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+	<Route exact path="/tests" element={<Test />} />
+
 	<Route exact path="/" element={<Home />} />
 	<Route exact path="/projects/:id/" element={<Project />} />
 	<Route exact path="/createprojects/" element={<ProjectCreate />} />
@@ -27,6 +34,10 @@ function App() {
 
 	<Route exact path="/projects/:id/createschedule/" element={<ScheduleCreate />} />
 	<Route exact path="/projects/:id/updateschedule/:task" element={<ScheduleUpdate />} />
+
+	<Route exact path="/boards" element={<Boards />} />
+	<Route exact path="/boards/:id" element={<Board />} />
+	<Route exact path="/createboard/" element={<BoardCreate />} />
       </Routes>
     </BrowserRouter>
   );
