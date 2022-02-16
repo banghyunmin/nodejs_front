@@ -2,39 +2,40 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
+import Center from './testPage/Center.js';
+
 import Header from '../component/Header.js';
 import Footer from '../component/Footer.js';
 
 export default function Home() {
 
-    const tempStyle = {
-	    margin:"10px",
-	    backgroundColor:"blue"
-    }
-    
-
-    const AppContainer = styled.div`
-	&,
-	& * {
-		box-sizing: border-box;
-	}
-	`;
-    const HeaderContainer = styled.header`
-	padding: 1rem;
-	border: 1px solid red;
-	`;
-    const ListWrapper = styled.div`
-	width: 25%;
+  const AppContainer = styled.div`
+	width: 100%;
+	height: 1000px;
+	overflow: hidden;
+	white-space: nowrap;
+	`
+  const TopContainer = styled.div`
+	background-color: blue;
+	width: 100%;
+	height: 20%;
+	overflow: hidden;
+	`
+  const SideContainer = styled.div`
 	float: left;
-	padding: 15px;
-	border: 1px solid red;
-	`;
-    const Main = styled.div`
-	width: 75%;
+	background-color: red;
+	width: 20%;
+	height: 80%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	`
+  const CenterContainer = styled.div`
 	float: left;
-	padding: 15px;
-	border: 1px solid red;
-	`;
+	width: 60%;
+	height: 80%;
+	overflow: hidden;
+	`
 
     return (
 <>
@@ -43,24 +44,17 @@ export default function Home() {
   <div style={{height:"100px"}}></div>
 </div>
 <div className="content" > 
-	    <div className="left" style={{
-		    margin:"10px",
-		    backgroundColor:"green",
-			    height:"100px",
-			    width:"200px"
-	    }}></div>
-	    <div className="cneter" style={{
-		    margin:"10px",
-		    backgroundColor:"green",
-			    height:"100px",
-			    width:"100%"
-	    }}></div>
-	    <div className="right" style={{
-		    margin:"10px",
-		    backgroundColor:"green",
-			    height:"100px",
-			    width:"200px"
-	    }}></div>
+  <AppContainer>
+    <TopContainer>
+    </TopContainer>
+    <SideContainer>
+    </SideContainer>
+    <CenterContainer>
+      <Center />
+    </CenterContainer>
+    <SideContainer>
+    </SideContainer>
+  </AppContainer>
 </div>
 <div className="Footer">
   <Footer/>
